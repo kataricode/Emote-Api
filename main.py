@@ -551,7 +551,6 @@ async def perform_emote(team_code: str, uids: list, emote_id: int):
 
 @app.route('/join')
 async def join_team():
-    global loop
     team_code = request.args.get('tc')
     uid1 = request.args.get('uid1')
     uid2 = request.args.get('uid2')
@@ -577,7 +576,7 @@ async def join_team():
     try:
         await perform_emote(team_code, uids, emote_id)
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"status": "error", "message": f"Error: {str(e)}"}), 500
 
     return jsonify({
         "status": "success",
