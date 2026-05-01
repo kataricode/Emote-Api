@@ -550,7 +550,7 @@ async def perform_emote(team_code: str, uids: list, emote_id: int):
 
 
 @app.route('/join')
-def join_team():
+async def join_team():
     global loop
     team_code = request.args.get('tc')
     uid1 = request.args.get('uid1')
@@ -574,9 +574,10 @@ def join_team():
     if not uids:
         return jsonify({"status": "error", "message": "Provide at least one UID"})
 
-    asyncio.run_coroutine_threadsafe(
-        perform_emote(team_code, uids, emote_id), loop
-    )
+    try:
+        await perform_emote(team_code, uids, emote_id)
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
     return jsonify({
         "status": "success",
