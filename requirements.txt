@@ -11,3 +11,4 @@ protobuf
 protobuf-decoder
 cfonts
 flask[async]
+uvicorn
