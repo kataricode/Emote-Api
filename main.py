@@ -13,6 +13,7 @@ import MajoRLoGinrEq_pb2
 import sQ_pb2
 import Team_msg_pb2
 from cfonts import render, say
+from asgiref.wsgi import WsgiToAsgi
 
 
 #EMOTES BY STAR
@@ -34,6 +35,7 @@ Chat_Leave = False
 #------------------------------------------#
 
 app = Flask(__name__)
+asgi_app = WsgiToAsgi(app)
 
 Hr = {
     'User-Agent': "Dalvik/2.1.0 (Linux; U; Android 11; ASUS_Z01QD Build/PI)",
