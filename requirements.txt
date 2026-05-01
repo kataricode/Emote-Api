@@ -10,3 +10,4 @@ pycryptodome
 protobuf
 protobuf-decoder
 cfonts
+flask[async]
